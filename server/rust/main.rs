@@ -38,7 +38,13 @@ impl AuthService for AuthServiceImpl {
     ) -> Result<Response<GenerateTotpResponse>, Status> {
         let req = request.into_inner();
         
-        let totp = TOTP::new(Algorithm::SHA1, 6, 1, 30, req.account_name.as_bytes().to_vec())
+        let totp = TOTP::new(
+                Algorithm::SHA1, 
+                6, 
+                1, 
+                30, 
+                req.account_name.as_bytes().to_vec()
+            )
             .map_err(|e| Status::internal(format!("Failed to generate TOTP: {}", e)))?;
         
         let key = totp.get_secret_base32().to_string();
