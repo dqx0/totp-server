@@ -1,0 +1,21 @@
+[package]
+name = "totp_auth"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "totp-client"
+path = "example_client/rust/main.rs"
+
+[[bin]]
+name = "totp-server"
+path = "server/rust/main.rs"
+
+[dependencies]
+tonic = "0.12"
+prost = "0.13"
+tokio = { version = "1.0", features = ["macros", "rt-multi-thread"] }
+totp-rs = "^5.0"
+
+[build-dependencies]
+tonic-build = "0.12"

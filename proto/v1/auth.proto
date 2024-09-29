@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package dqx0.totp_auth.v1;
+
+option go_package = "pb/v1;totp_auth_v1";
+
+service AuthService {
+  rpc GenerateTOTP (GenerateTOTPRequest) returns (GenerateTOTPResponse);
+  rpc ValidateTOTP (ValidateTOTPRequest) returns (ValidateTOTPResponse);
+}
+
+message GenerateTOTPRequest {
+  string account_name = 1;
+}
+
+message GenerateTOTPResponse {
+  string key = 1;
+}
+
+message ValidateTOTPRequest {
+  string token = 1;
+  string secret = 2;
+}
+
+message ValidateTOTPResponse {
+  bool valid = 1;
+}
